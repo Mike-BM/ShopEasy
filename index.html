@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple E-commerce Store</title>
+  </head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">ShopEasy</div>
+      <ul class="nav-links">
+        <li class="nav-link active" data-target="home">Home</li>
+        <li class="nav-link" data-target="about">About</li>
+        <li class="nav-link" data-target="contact">Contact</li>
+      </ul>
+      <div class="cart-icon">
+        🛒
+        <span class="cart-count">0</span>
+      </div>
+    </nav>
+  </header>
+
+  <div class="overlay"></div>
+
+  <div class="cart-container">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <span class="close-cart">×</span>
+    </div>
+    <div class="cart-items">
+      <!-- Cart items will be dynamically added here -->
+    </div>
+    <div class="cart-total">
+      Total: $<span id="cart-total-amount">0.00</span>
+    </div>
+    <button class="btn checkout-btn">Checkout</button>
+  </div>
+
+  <main>
+    <section id="home" class="active-section">
+      <div class="hero">
+        <h1>Welcome to ShopEasy</h1>
+        <p>Your one-stop shop for amazing products at unbeatable prices!</p>
+        <button class="btn">Shop Now</button>
+      </div>
+
+      <h2>Featured Products</h2>
+      <div class="products">
+        <!-- Products will be dynamically added here -->
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="about-content">
+        <h2>About Us</h2>
+        <p>At ShopEasy, we believe in providing high-quality products at affordable prices. Our journey began in 2025 with a simple mission: to make online shopping easy, reliable, and enjoyable for everyone.</p>
+        <p>Our team of dedicated professionals works tirelessly to curate the best products from around the world, ensuring that you have access to a wide range of options for all your needs.</p>
+        <p>We pride ourselves on excellent customer service and fast shipping, making your shopping experience as smooth as possible. Thank you for choosing ShopEasy – where shopping is truly made easy!</p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-content">
+        <h2>Contact Us</h2>
+        <p>Have questions or feedback? We'd love to hear from you!</p>
+        
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" required></textarea>
+          </div>
+          
+          <button type="submit" class="btn add-to-cart">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 ShopEasy. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #008080;
+      color: white;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-links li {
+      margin-left: 1.5rem;
+      cursor: pointer;
+    }
+
+    .cart-icon {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: #ff4500;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    .active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    #home, #about, #contact {
+      display: none;
+    }
+
+    .active-section {
+      display: block !important;
+    }
+
+    .hero {
+      background-color: #008080;
+      color: white;
+      padding: 3rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      background-color: white;
+      color: #008080;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #f0f0f0;
+      transform: translateY(-3px);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .product {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 1rem;
+    }
+
+    .product-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-price {
+      font-weight: bold;
+      color: #008080;
+      margin-bottom: 1rem;
+    }
+
+    .add-to-cart {
+      width: 100%;
+      background-color: #008080;
+      color: white;
+    }
+
+    .about-content, .contact-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-content h2, .contact-content h2 {
+      color: #008080;
+      margin-bottom: 1rem;
+    }
+
+    .contact-form {
+      margin-top: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .form-group textarea {
+      height: 150px;
+    }
+
+    .cart-container {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 300px;
+      height: 100vh;
+      background-color: white;
+      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .cart-container.active {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .close-cart {
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    .cart-items {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .cart-item {
+      display: flex;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin-right: 1rem;
+    }
+
+    .cart-item-info {
+      flex-grow: 1;
+    }
+
+    .remove-item {
+      color: #ff4500;
+      cursor: pointer;
+    }
+
+    .cart-total {
+      margin-top: 1rem;
+      text-align: right;
+      font-weight: bold;
+    }
+
+    .checkout-btn {
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 999;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: #008080;
+      color: white;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .products {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+      
+      .hero {
+        padding: 2rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-links {
+        font-size: 0.9rem;
+      }
+      
+      .products {
+        grid-template-columns: 1fr;
+      }
+      
+      main {
+        padding: 1rem;
+      }
+    }
+  </style>
+
+
+<script>
+    // Sample product data
+    const products = [
+      {
+        id: 1,
+        name: 'Wireless Headphones',
+        price: 99.99,
+        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+      },
+      {
+        id: 2,
+        name: 'Smart Watch',
+        price: 149.99,
+        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+      },
+      {
+        id: 3,
+        name: 'Smartphone',
+        price: 699.99,
+        image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+      },
+      {
+        id: 4,
+        name: 'Laptop',
+        price: 1299.99,
+        image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+      },
+    ];
+
+    // DOM Elements
+    const productsContainer = document.querySelector('.products');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+    const cartIcon = document.querySelector('.cart-icon');
+    const cartCount = document.querySelector('.cart-count');
+    const cartContainer = document.querySelector('.cart-container');
+    const closeCartBtn = document.querySelector('.close-cart');
+    const overlay = document.querySelector('.overlay');
+    const cartItems = document.querySelector('.cart-items');
+    const cartTotalAmount = document.getElementById('cart-total-amount');
+    const checkoutBtn = document.querySelector('.checkout-btn');
+    const contactForm = document.querySelector('.contact-form');
+
+    // Cart array to store added items
+    let cart = [];
+
+    // Display products
+    function displayProducts() {
+      productsContainer.innerHTML = '';
+      
+      products.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.classList.add('product');
+        
+        productElement.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <div class="product-info">
+            <h3 class="product-title">${product.name}</h3>
+            <p class="product-price">$${product.price.toFixed(2)}</p>
+            <button class="btn add-to-cart" data-id="${product.id}">Add to Cart</button>
+          </div>
+        `;
+        
+        productsContainer.appendChild(productElement);
+      });
+      
+      // Add event listeners to the "Add to Cart" buttons
+      const addToCartButtons = document.querySelectorAll('.add-to-cart');
+      addToCartButtons.forEach(button => {
+        button.addEventListener('click', addToCart);
+      });
+    }
+
+    // Navigation functionality
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        // Remove active class from all links
+        navLinks.forEach(link => link.classList.remove('active'));
+        
+        // Add active class to clicked link
+        this.classList.add('active');
+        
+        // Get the target section
+        const targetId = this.getAttribute('data-target');
+        
+        // Hide all sections
+        sections.forEach(section => section.classList.remove('active-section'));
+        
+        // Show the target section
+        document.getElementById(targetId).classList.add('active-section');
+      });
+    });
+
+    // Add to Cart functionality
+    function addToCart(event) {
+      const productId = parseInt(event.target.getAttribute('data-id'));
+      const product = products.find(p => p.id === productId);
+      
+      // Check if product is already in cart
+      const existingItem = cart.find(item => item.id === productId);
+      
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({
+          ...product,
+          quantity: 1
+        });
+      }
+      
+      updateCart();
+    }
+
+    // Update Cart
+    function updateCart() {
+      // Update cart count
+      const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+      cartCount.textContent = totalItems;
+      
+      // Update cart items display
+      cartItems.innerHTML = '';
+      
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p>Your cart is empty</p>';
+      } else {
+        cart.forEach(item => {
+          const cartItemElement = document.createElement('div');
+          cartItemElement.classList.add('cart-item');
+          
+          cartItemElement.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+            </div>
+            <span class="remove-item" data-id="${item.id}">🗑️</span>
+          `;
+          
+          cartItems.appendChild(cartItemElement);
+        });
+      }
+      
+      // Add event listeners to remove buttons
+      const removeButtons = document.querySelectorAll('.remove-item');
+      removeButtons.forEach(button => {
+        button.addEventListener('click', removeFromCart);
+      });
+      
+      // Update cart total
+      const total = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+      cartTotalAmount.textContent = total.toFixed(2);
+    }
+
+    // Remove from Cart
+    function removeFromCart(event) {
+      const productId = parseInt(event.target.getAttribute('data-id'));
+      cart = cart.filter(item => item.id !== productId);
+      updateCart();
+    }
+
+    // Toggle cart display
+    cartIcon.addEventListener('click', () => {
+      cartContainer.classList.add('active');
+      overlay.classList.add('active');
+    });
+
+    // Close cart
+    closeCartBtn.addEventListener('click', () => {
+      cartContainer.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+
+    // Close cart when clicking on overlay
+    overlay.addEventListener('click', () => {
+      cartContainer.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+
+    // Checkout button
+    checkoutBtn.addEventListener('click', () => {
+      if (cart.length > 0) {
+        alert('Thank you for your purchase! Your order has been placed.');
+        cart = [];
+        updateCart();
+        cartContainer.classList.remove('active');
+        overlay.classList.remove('active');
+      } else {
+        alert('Your cart is empty. Add some products before checking out.');
+      }
+    });
+
+    // Contact form submission
+    contactForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      
+      alert(`Thank you, ${name}! Your message has been sent. We will get back to you at ${email} soon.`);
+      
+      // Reset form
+      contactForm.reset();
+    });
+
+    // Initialize the page
+    displayProducts();
+    updateCart();
+  </script>
